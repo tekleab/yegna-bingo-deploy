@@ -1,0 +1,67 @@
+[
+  {
+    "id": "1753950677893",
+    "telegramId": "123456789",
+    "username": "testuser",
+    "phoneNumber": "+1234567890",
+    "balance": 10,
+    "isRegistered": true,
+    "createdAt": "2025-07-31T08:31:17.893Z"
+  },
+  {
+    "id": "1753952730276",
+    "telegramId": "987654321",
+    "username": "newuser",
+    "firstName": "New",
+    "phoneNumber": "+9876543210",
+    "balance": 10,
+    "isRegistered": true,
+    "gamesPlayed": 0,
+    "gamesWon": 0,
+    "totalWinnings": 0,
+    "currentGame": null,
+    "createdAt": "2025-07-31T09:05:30.276Z"
+  },
+  {
+    "id": "1753953389857",
+    "telegramId": "7656011498",
+    "username": "tekleab59",
+    "firstName": "Tekleab",
+    "phoneNumber": "+251939085453",
+    "balance": 0,
+    "isRegistered": true,
+    "gamesPlayed": 0,
+    "gamesWon": 0,
+    "totalWinnings": 0,
+    "currentGame": "1754307214629",
+    "createdAt": "2025-07-31T09:16:29.857Z"
+  },
+  {
+    "id": "1754312189123",
+    "telegramId": "6478683209",
+    "username": "Saamiiii3iiiiiii",
+    "firstName": "Waliif...Waliin",
+    "phoneNumber": "251927246110",
+    "balance": 0,
+    "isRegistered": true,
+    "gamesPlayed": 0,
+    "gamesWon": 0,
+    "totalWinnings": 0,
+    "currentGame": "1754312218351",
+    "createdAt": "2025-08-04T12:56:29.124Z"
+  },
+  {
+    "id": "1754312312369",
+    "telegramId": "5436789847",
+    "username": "BeekaaWallaalaa",
+    "firstName": "S...E",
+    "phoneNumber": "251933322990",
+    "balance": 0,
+    "isRegistered": true,
+    "gamesPlayed": 0,
+    "gamesWon": 0,
+    "totalWinnings": 0,
+    "currentGame": "1754312321085",
+    "createdAt": "2025-08-04T12:58:32.369Z"
+  }
+]

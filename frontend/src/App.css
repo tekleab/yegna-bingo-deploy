@@ -1,0 +1,862 @@
+/* Geez Bingo App Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.yegna-bingo-container {
+  max-width: 100%;
+  min-height: 100vh;
+  background: #f8f9ff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Top Bar */
+.top-bar {
+  background: #2c3e50;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.time {
+  font-weight: 500;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-section h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-btn {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.menu-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.status-icons {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+
+/* Game Info Cards */
+.game-info-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 15px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-card {
+  background: #f8f9ff;
+  border: 1px solid #e3e2f3;
+  border-radius: 8px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #6c5ce7;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+/* Game Area */
+.game-area {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  min-height: 60vh;
+}
+
+/* Left Panel - Bingo Grid */
+.bingo-grid-panel {
+  flex: 2;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.bingo-header {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.bingo-letter {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.bingo-letter.b { background: #fdcb6e; }
+.bingo-letter.i { background: #00b894; }
+.bingo-letter.n { background: #e17055; }
+.bingo-letter.g { background: #74b9ff; }
+.bingo-letter.o { background: #a29bfe; }
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #6c5ce7 #f8f9ff;
+}
+
+.numbers-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.numbers-grid::-webkit-scrollbar-track {
+  background: #f8f9ff;
+  border-radius: 3px;
+}
+
+.numbers-grid::-webkit-scrollbar-thumb {
+  background: #6c5ce7;
+  border-radius: 3px;
+}
+
+.number-cell {
+  aspect-ratio: 1;
+  background: #f8f9ff;
+  border: 1px solid #e3e2f3;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #2d3436;
+  min-height: 32px;
+  min-width: 32px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.number-cell:hover {
+  background: #e3e2f3;
+  transform: scale(1.05);
+}
+
+.number-cell.called {
+  background: #ff7675;
+  color: white;
+  border-color: #d63031;
+}
+
+.number-cell.marked {
+  background: #fdcb6e;
+  color: white;
+  border-color: #e17055;
+  transform: scale(1.1);
+}
+
+.number-cell.called.marked {
+  background: #00b894;
+  border-color: #00a085;
+}
+
+/* Card Selection Styles */
+.number-cell.selected {
+  background: #fdcb6e;
+  color: white;
+  border-color: #e17055;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(253, 203, 110, 0.4);
+}
+
+.number-cell.used-by-others {
+  background: #ff7675;
+  color: white;
+  border-color: #d63031;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.number-cell.selectable {
+  background: #74b9ff;
+  color: white;
+  border-color: #0984e3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.number-cell.selectable:hover {
+  background: #0984e3;
+  transform: scale(1.05);
+}
+
+.number-cell.disabled {
+  background: #b2bec3;
+  color: #636e72;
+  border-color: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Card Selection Header */
+.card-selection-header {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 15px;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.selection-status {
+  margin-bottom: 10px;
+}
+
+.your-turn {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fdcb6e;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.waiting-turn {
+  font-size: 16px;
+  color: #dfe6e9;
+}
+
+.selection-info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+}
+
+.selected-count {
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.remaining-count {
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.finish-selection-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00b894, #00a085);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 10px;
+}
+
+.finish-selection-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+}
+
+/* Right Panel - Game Status */
+.game-status-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.game-status {
+  background: #f8f9ff;
+  border: 2px solid #6c5ce7;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.status-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6c5ce7;
+}
+
+.current-call-section {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.current-call-label {
+  font-size: 14px;
+  color: #6c5ce7;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.current-call-display {
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.called-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #e17055;
+  background: #ffeaa7;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-call {
+  font-size: 24px;
+  color: #b2bec3;
+}
+
+/* Game Actions */
+.game-actions {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  flex: 1;
+}
+
+.bingo-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00b894, #00a085);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bingo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+}
+
+.bingo-winner {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #00b894, #00a085);
+  border-radius: 12px;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.winner-announcement {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.game-ended {
+  text-align: center;
+  padding: 20px;
+}
+
+.ended-text {
+  font-size: 16px;
+  color: #6c5ce7;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.winner-text {
+  font-size: 14px;
+  color: #00b894;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.prize-amount {
+  font-size: 16px;
+  color: #6c5ce7;
+  font-weight: bold;
+  background: #f8f9ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid #6c5ce7;
+}
+
+/* Create/Join Section */
+.create-join-section {
+  text-align: center;
+}
+
+.create-join-section h3 {
+  color: #6c5ce7;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.bet-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.bet-buttons button {
+  flex: 1;
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bet-buttons button:hover {
+  background: #5f4dd0;
+  transform: scale(1.05);
+}
+
+.join-section {
+  display: flex;
+  gap: 8px;
+}
+
+.join-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.join-section button {
+  background: #00b894;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.join-section button:hover {
+  background: #00a085;
+}
+
+/* Waiting Section */
+.waiting-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.waiting-text {
+  color: #6c5ce7;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.game-id-display {
+  background: #f8f9ff;
+  border: 2px solid #6c5ce7;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.game-id-label {
+  font-size: 12px;
+  color: #6c5ce7;
+  margin-bottom: 8px;
+}
+
+.game-id-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2d3436;
+  margin-bottom: 10px;
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.copy-btn {
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #5f4dd0;
+}
+
+.player-count {
+  font-size: 14px;
+  color: #6c5ce7;
+  font-weight: 500;
+}
+
+/* User Info */
+.user-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.wallet-info, .stake-info {
+  text-align: center;
+}
+
+.wallet-label, .stake-label {
+  font-size: 12px;
+  color: #6c5ce7;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.wallet-value, .stake-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #6c5ce7;
+}
+
+.error {
+  color: #e17055;
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 1200px) {
+  .game-area {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .bingo-grid-panel {
+    order: 2;
+  }
+  
+  .game-status-panel {
+    order: 1;
+  }
+  
+  .numbers-grid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+  }
+  
+  .number-cell {
+    font-size: 11px;
+    min-height: 30px;
+  }
+  
+  .bingo-letter {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .title-section h1 {
+    font-size: 16px;
+  }
+  
+  .game-info-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .info-card {
+    padding: 10px 6px;
+  }
+  
+  .info-label {
+    font-size: 11px;
+  }
+  
+  .info-value {
+    font-size: 14px;
+  }
+  
+  .numbers-grid {
+    grid-template-columns: repeat(9, 1fr);
+    max-height: 350px;
+  }
+  
+  .number-cell {
+    font-size: 10px;
+    min-height: 28px;
+  }
+  
+  .game-status {
+    padding: 15px;
+  }
+  
+  .status-text {
+    font-size: 16px;
+  }
+  
+  .current-call-display {
+    min-height: 50px;
+  }
+  
+  .called-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .user-info {
+    padding: 12px;
+  }
+  
+  .wallet-value, .stake-value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .title-section h1 {
+    font-size: 14px;
+  }
+  
+  .game-info-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 10px;
+  }
+  
+  .info-card {
+    padding: 8px 4px;
+  }
+  
+  .info-label {
+    font-size: 10px;
+  }
+  
+  .info-value {
+    font-size: 12px;
+  }
+  
+  .numbers-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    max-height: 300px;
+  }
+  
+  .number-cell {
+    font-size: 9px;
+    min-height: 25px;
+  }
+  
+  .bingo-letter {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  
+  .game-status {
+    padding: 12px;
+  }
+  
+  .status-text {
+    font-size: 14px;
+  }
+  
+  .current-call-display {
+    min-height: 40px;
+  }
+  
+  .called-number {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .bingo-btn {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .bet-buttons {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .bet-buttons button {
+    padding: 8px;
+    font-size: 11px;
+  }
+  
+  .join-section {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .join-section input {
+    padding: 8px;
+    font-size: 11px;
+  }
+  
+  .join-section button {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  .user-info {
+    padding: 10px;
+  }
+  
+  .wallet-label, .stake-label {
+    font-size: 11px;
+  }
+  
+  .wallet-value, .stake-value {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .numbers-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .number-cell {
+    font-size: 8px;
+    min-height: 22px;
+  }
+  
+  .bingo-letter {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+  
+  .game-info-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 8px;
+  }
+  
+  .info-card {
+    padding: 6px 3px;
+  }
+  
+  .info-label {
+    font-size: 9px;
+  }
+  
+  .info-value {
+    font-size: 11px;
+  }
+} 

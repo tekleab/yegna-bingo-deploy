@@ -1,0 +1,22 @@
+{
+  "name": "yegna-bingo",
+  "version": "1.0.0",
+  "description": "Yegna Bingo - Multiplayer Telegram Bingo Game",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["bingo", "telegram", "game", "multiplayer"],
+  "author": "Yegna Bingo Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
